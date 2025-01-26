@@ -24,6 +24,7 @@ static char	*reading(char *str, int fd)
 	while (!ft_if_new_line(temp) && read_value > 0)
 	{
 		read_value = read(fd, temp, BUFFER_SIZE);
+		temp[read_value] = '\0';
 		str = ft_strjoin(str, temp);
 	}
 	free(temp);
@@ -79,6 +80,8 @@ char	*get_next_line(int fd)
 int main()
 {
 	int fd = open("a.txt", O_RDONLY);
-	printf("%s", get_next_line(fd));
-
+	char *line;
+	line = get_next_line(fd);
+	printf("%s", line);
+	free(line);
 }

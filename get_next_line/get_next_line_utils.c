@@ -59,11 +59,11 @@ char	*ft_strjoin(char *s1, char *s2)
 	i = -1;
 	while (*(s1 + ++i))
 		*(str + i) = *(s1 + i);
+	free(s1);
 	j = -1;
 	while (*(s2 + ++j))
 		*(str + i + j) = *(s2 + j);
 	*(str + i + j) = '\0';
-	free(s1);
 	return (str);
 }
 
