@@ -11,19 +11,20 @@
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
-#define GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-#include <fcntl.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
+# include <fcntl.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <stdlib.h>
 
-#ifndef BUFFER_SIZE
-#define BUFFER_SIZE 40
-#endif
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 40
+# endif
+
 char	*get_next_line(int fd);
-int	ft_strlen(const char *str);
-int	ft_if_new_line(const char *s);
+int		ft_strlen(const char *str);
+int		ft_if_new_line(const char *s);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_substr(char *s, int start, int len);
 

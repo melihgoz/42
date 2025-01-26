@@ -49,6 +49,8 @@ char	*ft_strjoin(char *s1, char *s2)
 	if (!s1)
 	{
 		s1 = malloc(1 * sizeof(char));
+		if (!s1)
+			return (NULL);
 		*s1 = '\0';
 	}
 	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
@@ -61,7 +63,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	while (*(s2 + ++j))
 		*(str + i + j) = *(s2 + j);
 	*(str + i + j) = '\0';
-	// free(s1);
+	free(s1);
 	return (str);
 }
 

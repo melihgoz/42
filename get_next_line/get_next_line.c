@@ -12,18 +12,21 @@
 
 #include "get_next_line.h"
 
-static char *reading(char *str, int fd)
+static char	*reading(char *str, int fd)
 {
 	char	*temp;
 	int		read_value;
-	
+
 	temp = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (temp == NULL)
+		return (NULL);
 	read_value = 1;
-	while(!ft_if_new_line(temp) && read_value > 0)
+	while (!ft_if_new_line(temp) && read_value > 0)
 	{
 		read_value = read(fd, temp, BUFFER_SIZE);
 		str = ft_strjoin(str, temp);
 	}
+	free(temp);
 	return (str);
 }
 
@@ -33,6 +36,8 @@ char	*seperate_newline(char *str)
 	char	*line;
 
 	line = malloc(sizeof(char) * (ft_if_new_line(str) + 1));
+	if (line == NULL)
+		return (NULL);
 	index = 0;
 	while (str[index] && str[index] != '\n')
 	{
@@ -51,20 +56,22 @@ char	*seperate_newline(char *str)
 char	*after_new_line(char *str)
 {
 	int	index;
-	
+
 	index = 0;
 	while (str[index] != '\0' && str[index] != '\n')
 		index++;
 	if (str[index] == '\n')
 		index++;
-	return (str+index);
+	return (str + index);
 }
 
 char	*get_next_line(int fd)
 {
-	static char *str = NULL;
+	static char	*str = NULL;
+	char		*result;
+
 	str = reading(str, fd);
-	char	*result = seperate_newline(str);
+	result = seperate_newline(str);
 	str = after_new_line(str);
 	return (result);
 }
